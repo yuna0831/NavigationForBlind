@@ -3,12 +3,13 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    namespace "com.yoonah.bureyes"
+    compileSdk 34   // ✅ 최신 SDK로 맞춤
 
     defaultConfig {
         applicationId "com.yoonah.bureyes"
         minSdk 23
-        targetSdk 32
+        targetSdk 34
         versionCode 3
         versionName "2.0.2"
 
@@ -22,21 +23,23 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        // ✅ Java 17로 올려야 Gradle 8.x / AGP 8.x 환경에서 에러 안 남
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 }
-
 dependencies {
+    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'com.google.android.material:material:1.13.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
+    implementation 'com.google.android.gms:play-services-location:21.3.0'
 
-    implementation 'androidx.appcompat:appcompat:1.4.2'
-    implementation 'com.google.android.material:material:1.6.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'com.google.android.gms:play-services-location:18.0.0'
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
+    androidTestImplementation 'androidx.test.ext:junit:1.3.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.7.0'
+
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.29'
     implementation files('libs/libDaumMapAndroid.jar')
 }
